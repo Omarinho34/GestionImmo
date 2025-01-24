@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'acceuil{% endblock %}
+
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1 class="display-4 mt-5">Bienvenue sur notre site</h1>
+    </div>
+    <div class="container">
+    <h2>Les derniers biens</h2>
+    <div class="row flex">
+    {% for bien in proprietes %}
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{path('proprietes.show', {id: bien.id, slug: bien.slug})}}">{{ bien.title }}</a>
+                    </h5>
+                    <p class="card-text">{{ bien.city }} ({{bien.postalcode}})</p>
+                    {# <div class="text-primary">{{bien.price | number_format(0,'', ' ')}} €</div> #}
+                    <div class="text-primary" style="font-weight:bold; font-size:2rem;">{{bien.formatedprice}}</div>
+
+                </div> 
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    </div>
+{% endblock %}
